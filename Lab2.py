@@ -2,18 +2,18 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 
 
-def translate_orfs(dna_sequence):  # Ищем возможные белковые посл.
+def translate_orfs(dna_sequence):  # Ищем возможные белковые последовательности
     start_codon = 'M'
     stop_codons = {'TAA', 'TAG', 'TGA'}
 
-    def find_proteins(seq): # Перевод ДНК в белковые посл.
+    def find_proteins(seq): # Перевод ДНК в белковые последовательности
         proteins = set()
         for frame in range(3):
-            protein = '' # Для записи текущей аминопосл.
+            protein = '' # Для записи текущей аминопоследовательности
             start_found = False
             for i in range(frame, len(seq) - 2, 3):
                 codon = seq[i:i + 3]
-                amino_acid = Seq(codon).translate()  # Превращ. ДНК в аминокислоту
+                amino_acid = Seq(codon).translate()  # Превращаем ДНК в аминокислоту
                 if amino_acid == start_codon:
                     start_found = True
                     protein = start_codon
